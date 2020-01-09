@@ -6,15 +6,15 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/RichardKnop/machinery/v1/backends/result"
-	"github.com/RichardKnop/machinery/v1/brokers/eager"
-	"github.com/RichardKnop/machinery/v1/config"
-	"github.com/RichardKnop/machinery/v1/tasks"
-	"github.com/RichardKnop/machinery/v1/tracing"
+	"github.com/anhntbk08/machinery/v1/backends/result"
+	"github.com/anhntbk08/machinery/v1/brokers/eager"
+	"github.com/anhntbk08/machinery/v1/config"
+	"github.com/anhntbk08/machinery/v1/tasks"
+	"github.com/anhntbk08/machinery/v1/tracing"
 	"github.com/google/uuid"
 
-	backendsiface "github.com/RichardKnop/machinery/v1/backends/iface"
-	brokersiface "github.com/RichardKnop/machinery/v1/brokers/iface"
+	backendsiface "github.com/anhntbk08/machinery/v1/backends/iface"
+	brokersiface "github.com/anhntbk08/machinery/v1/brokers/iface"
 	opentracing "github.com/opentracing/opentracing-go"
 )
 

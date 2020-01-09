@@ -8,23 +8,23 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/RichardKnop/machinery/v1/config"
+	"github.com/anhntbk08/machinery/v1/config"
 
-	amqpbroker "github.com/RichardKnop/machinery/v1/brokers/amqp"
-	eagerbroker "github.com/RichardKnop/machinery/v1/brokers/eager"
-	gcppubsubbroker "github.com/RichardKnop/machinery/v1/brokers/gcppubsub"
-	brokeriface "github.com/RichardKnop/machinery/v1/brokers/iface"
-	redisbroker "github.com/RichardKnop/machinery/v1/brokers/redis"
-	sqsbroker "github.com/RichardKnop/machinery/v1/brokers/sqs"
+	amqpbroker "github.com/anhntbk08/machinery/v1/brokers/amqp"
+	eagerbroker "github.com/anhntbk08/machinery/v1/brokers/eager"
+	gcppubsubbroker "github.com/anhntbk08/machinery/v1/brokers/gcppubsub"
+	brokeriface "github.com/anhntbk08/machinery/v1/brokers/iface"
+	redisbroker "github.com/anhntbk08/machinery/v1/brokers/redis"
+	sqsbroker "github.com/anhntbk08/machinery/v1/brokers/sqs"
 
-	amqpbackend "github.com/RichardKnop/machinery/v1/backends/amqp"
-	dynamobackend "github.com/RichardKnop/machinery/v1/backends/dynamodb"
-	eagerbackend "github.com/RichardKnop/machinery/v1/backends/eager"
-	backendiface "github.com/RichardKnop/machinery/v1/backends/iface"
-	memcachebackend "github.com/RichardKnop/machinery/v1/backends/memcache"
-	mongobackend "github.com/RichardKnop/machinery/v1/backends/mongo"
-	nullbackend "github.com/RichardKnop/machinery/v1/backends/null"
-	redisbackend "github.com/RichardKnop/machinery/v1/backends/redis"
+	amqpbackend "github.com/anhntbk08/machinery/v1/backends/amqp"
+	dynamobackend "github.com/anhntbk08/machinery/v1/backends/dynamodb"
+	eagerbackend "github.com/anhntbk08/machinery/v1/backends/eager"
+	backendiface "github.com/anhntbk08/machinery/v1/backends/iface"
+	memcachebackend "github.com/anhntbk08/machinery/v1/backends/memcache"
+	mongobackend "github.com/anhntbk08/machinery/v1/backends/mongo"
+	nullbackend "github.com/anhntbk08/machinery/v1/backends/null"
+	redisbackend "github.com/anhntbk08/machinery/v1/backends/redis"
 )
 
 // BrokerFactory creates a new object of iface.Broker

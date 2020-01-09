@@ -8,11 +8,11 @@ import (
 	"time"
 
 	"cloud.google.com/go/pubsub"
-	"github.com/RichardKnop/machinery/v1/brokers/iface"
-	"github.com/RichardKnop/machinery/v1/common"
-	"github.com/RichardKnop/machinery/v1/config"
-	"github.com/RichardKnop/machinery/v1/log"
-	"github.com/RichardKnop/machinery/v1/tasks"
+	"github.com/anhntbk08/machinery/v1/brokers/iface"
+	"github.com/anhntbk08/machinery/v1/common"
+	"github.com/anhntbk08/machinery/v1/config"
+	"github.com/anhntbk08/machinery/v1/log"
+	"github.com/anhntbk08/machinery/v1/tasks"
 )
 
 // Broker represents an Google Cloud Pub/Sub broker
@@ -181,8 +181,14 @@ func (b *Broker) consumeOne(delivery *pubsub.Message, taskProcessor iface.TaskPr
 	// If the task is not registered return an error
 	// and leave the message in the queue
 	if !b.IsTaskRegistered(sig.Name) {
-		delivery.Nack()
-		log.ERROR.Printf("task %s is not registered", sig.Name)
+		if sig.IgnoreWhenTaskNotRegistered {
+			log.INFO.Printf("task %s is not registered and ignored", sig.Name)
+			delivery.Ack()
+			return
+		} else {
+			delivery.Nack()
+			log.ERROR.Printf("task %s is not registered", sig.Name)
+		}
 	}
 
 	err := taskProcessor.Process(sig)

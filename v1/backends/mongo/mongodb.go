@@ -13,11 +13,11 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 
-	"github.com/RichardKnop/machinery/v1/backends/iface"
-	"github.com/RichardKnop/machinery/v1/common"
-	"github.com/RichardKnop/machinery/v1/config"
-	"github.com/RichardKnop/machinery/v1/log"
-	"github.com/RichardKnop/machinery/v1/tasks"
+	"github.com/anhntbk08/machinery/v1/backends/iface"
+	"github.com/anhntbk08/machinery/v1/common"
+	"github.com/anhntbk08/machinery/v1/config"
+	"github.com/anhntbk08/machinery/v1/log"
+	"github.com/anhntbk08/machinery/v1/tasks"
 )
 
 // Backend represents a MongoDB result backend
@@ -33,7 +33,7 @@ type Backend struct {
 func New(cnf *config.Config) (iface.Backend, error) {
 	backend := &Backend{
 		Backend: common.NewBackend(cnf),
-		once: sync.Once{},
+		once:    sync.Once{},
 	}
 
 	return backend, nil

@@ -1,6 +1,4 @@
-[1]: https://raw.githubusercontent.com/RichardKnop/assets/master/machinery/example_worker.png
-[2]: https://raw.githubusercontent.com/RichardKnop/assets/master/machinery/example_worker_receives_tasks.png
-[3]: http://patreon_public_assets.s3.amazonaws.com/sized/becomeAPatronBanner.png
+Notice this is forked from https://github.com/RichardKnop/machinery with changes to fulfill my owns need - distributed jobs, job able to run locally and i want to add my own dashboard for logging and and healthcheck.
 
 ## Machinery
 
@@ -19,29 +17,45 @@ Machinery is an asynchronous task queue/job queue based on distributed message p
 
 ---
 
-* [V2 Experiment](#v2-experiment)
-* [First Steps](#first-steps)
-* [Configuration](#configuration)
-* [Custom Logger](#custom-logger)
-* [Server](#server)
-* [Workers](#workers)
-* [Tasks](#tasks)
-  * [Registering Tasks](#registering-tasks)
-  * [Signatures](#signatures)
-  * [Supported Types](#supported-types)
-  * [Sending Tasks](#sending-tasks)
-  * [Delayed Tasks](#delayed-tasks)
-  * [Retry Tasks](#retry-tasks)
-  * [Get Pending Tasks](#get-pending-tasks)
-  * [Keeping Results](#keeping-results)
-* [Workflows](#workflows)
-  * [Groups](#groups)
-  * [Chords](#chords)
-  * [Chains](#chains)
-* [Development](#development)
-  * [Requirements](#requirements)
-  * [Dependencies](#dependencies)
-  * [Testing](#testing)
+- [Machinery](#machinery)
+  - [V2 Experiment](#v2-experiment)
+  - [First Steps](#first-steps)
+  - [Configuration](#configuration)
+    - [Broker](#broker)
+      - [AMQP](#amqp)
+      - [Redis](#redis)
+      - [AWS SQS](#aws-sqs)
+      - [GCP Pub/Sub](#gcp-pubsub)
+    - [DefaultQueue](#defaultqueue)
+    - [ResultBackend](#resultbackend)
+      - [Redis](#redis-1)
+      - [Memcache](#memcache)
+      - [AMQP](#amqp-1)
+      - [MongoDB](#mongodb)
+    - [ResultsExpireIn](#resultsexpirein)
+    - [AMQP](#amqp-2)
+    - [Dynamodb](#dynamodb)
+  - [Custom Logger](#custom-logger)
+  - [Server](#server)
+  - [Workers](#workers)
+  - [Tasks](#tasks)
+    - [Registering Tasks](#registering-tasks)
+    - [Signatures](#signatures)
+    - [Supported Types](#supported-types)
+    - [Sending Tasks](#sending-tasks)
+    - [Delayed Tasks](#delayed-tasks)
+    - [Retry Tasks](#retry-tasks)
+    - [Get Pending Tasks](#get-pending-tasks)
+    - [Keeping Results](#keeping-results)
+    - [Error Handling](#error-handling)
+  - [Workflows](#workflows)
+    - [Groups](#groups)
+    - [Chords](#chords)
+    - [Chains](#chains)
+  - [Development](#development)
+    - [Requirements](#requirements)
+    - [Dependencies](#dependencies)
+    - [Testing](#testing)
 
 ### V2 Experiment
 

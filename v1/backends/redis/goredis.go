@@ -9,12 +9,12 @@ import (
 
 	"github.com/go-redis/redis"
 
-	"github.com/RichardKnop/machinery/v1/backends/iface"
-	"github.com/RichardKnop/machinery/v1/common"
-	"github.com/RichardKnop/machinery/v1/config"
-	"github.com/RichardKnop/machinery/v1/log"
-	"github.com/RichardKnop/machinery/v1/tasks"
 	"github.com/RichardKnop/redsync"
+	"github.com/anhntbk08/machinery/v1/backends/iface"
+	"github.com/anhntbk08/machinery/v1/common"
+	"github.com/anhntbk08/machinery/v1/config"
+	"github.com/anhntbk08/machinery/v1/log"
+	"github.com/anhntbk08/machinery/v1/tasks"
 )
 
 // Backend represents a Redis result backend

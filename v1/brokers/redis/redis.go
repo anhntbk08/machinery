@@ -8,13 +8,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/RichardKnop/machinery/v1/brokers/errs"
-	"github.com/RichardKnop/machinery/v1/brokers/iface"
-	"github.com/RichardKnop/machinery/v1/common"
-	"github.com/RichardKnop/machinery/v1/config"
-	"github.com/RichardKnop/machinery/v1/log"
-	"github.com/RichardKnop/machinery/v1/tasks"
 	"github.com/RichardKnop/redsync"
+	"github.com/anhntbk08/machinery/v1/brokers/errs"
+	"github.com/anhntbk08/machinery/v1/brokers/iface"
+	"github.com/anhntbk08/machinery/v1/common"
+	"github.com/anhntbk08/machinery/v1/config"
+	"github.com/anhntbk08/machinery/v1/log"
+	"github.com/anhntbk08/machinery/v1/tasks"
 	"github.com/gomodule/redigo/redis"
 )
 
