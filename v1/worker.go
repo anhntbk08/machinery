@@ -212,7 +212,7 @@ func (worker *Worker) taskRetry(signature *tasks.Signature) error {
 	eta := time.Now().UTC().Add(time.Second * time.Duration(signature.RetryTimeout))
 	signature.ETA = &eta
 
-	log.WARNING.Printf("Task %s failed. Going to retry in %d seconds.", signature.UUID, signature.RetryTimeout)
+	log.WARNING.Printf("Task %s %s failed. Going to retry in %d seconds.", signature.UUID, signature.Name, signature.RetryTimeout)
 
 	// Send the task back to the queue
 	_, err := worker.server.SendTask(signature)
@@ -230,7 +230,7 @@ func (worker *Worker) retryTaskIn(signature *tasks.Signature, retryIn time.Durat
 	eta := time.Now().UTC().Add(retryIn)
 	signature.ETA = &eta
 
-	log.WARNING.Printf("Task %s failed. Going to retry in %.0f seconds.", signature.UUID, retryIn.Seconds())
+	log.WARNING.Printf("Task %s %s failed. Going to retry in %.0f seconds.", signature.UUID, signature.Name, retryIn.Seconds())
 
 	// Send the task back to the queue
 	_, err := worker.server.SendTask(signature)
@@ -356,7 +356,7 @@ func (worker *Worker) taskFailed(signature *tasks.Signature, taskErr error) erro
 	if worker.errorHandler != nil {
 		worker.errorHandler(taskErr)
 	} else {
-		log.ERROR.Printf("Failed processing task %s. Error = %v", signature.UUID, taskErr)
+		log.ERROR.Printf("Failed processing task %s %s. Error = %v", signature.UUID, signature.Name, taskErr)
 	}
 
 	// Trigger error callbacks
