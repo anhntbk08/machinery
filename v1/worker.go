@@ -26,6 +26,7 @@ type Worker struct {
 	errorHandler    func(err error)
 	preTaskHandler  func(*tasks.Signature)
 	postTaskHandler func(*tasks.Signature)
+	limitTasks      []string
 }
 
 var (
@@ -124,8 +125,26 @@ func (worker *Worker) Quit() {
 	worker.server.GetBroker().StopConsuming()
 }
 
+func SliceIndex(limit int, predicate func(i int) bool) int {
+	for i := 0; i < limit; i++ {
+		if predicate(i) {
+			return i
+		}
+	}
+	return -1
+}
+
 // Process handles received tasks and triggers success/error callbacks
 func (worker *Worker) Process(signature *tasks.Signature) error {
+	if worker.limitTasks != nil && len(worker.limitTasks) > 0 {
+		registeredTask := SliceIndex(len(worker.limitTasks),
+			func(i int) bool { return worker.limitTasks[i] == signature.Name },
+		)
+		if registeredTask <= 0 {
+			return nil
+		}
+	}
+
 	// If the task is not registered with this worker, do not continue
 	// but only return nil as we do not want to restart the worker process
 	if !worker.server.IsTaskRegistered(signature.Name) {

@@ -85,8 +85,8 @@ func TestWorkerOnlyConsumesRegisteredTaskAMQP(t *testing.T) {
 		},
 	}
 
-	worker1 := server1.NewWorker("test_worker", 0)
-	worker2 := server2.NewWorker("test_worker2", 0)
+	worker1 := server1.NewWorker("test_worker", 0, []string{})
+	worker2 := server2.NewWorker("test_worker2", 0, []string{})
 	go worker1.Launch()
 	go worker2.Launch()
 
@@ -200,8 +200,8 @@ func TestWorkerOnlyConsumesRegisteredTaskRedis(t *testing.T) {
 		},
 	}
 
-	worker1 := server1.NewWorker("test_worker", 0)
-	worker2 := server2.NewWorker("test_worker2", 0)
+	worker1 := server1.NewWorker("test_worker", 0, []string{})
+	worker2 := server2.NewWorker("test_worker2", 0, []string{})
 	go worker1.Launch()
 	go worker2.Launch()
 

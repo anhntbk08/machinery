@@ -22,7 +22,7 @@ func TestRedisRedis(t *testing.T) {
 		DefaultQueue:  "test_queue",
 		ResultBackend: fmt.Sprintf("redis://%v", redisURL),
 	})
-	worker := server.NewWorker("test_worker", 0)
+	worker := server.NewWorker("test_worker", 0, []string{})
 	go worker.Launch()
 	testAll(server, t)
 	worker.Quit()
@@ -44,7 +44,7 @@ func TestRedisRedisWorkerQuitRaceCondition(t *testing.T) {
 		}
 
 		server, _ := machinery.NewServer(cnf)
-		worker := server.NewWorker("test_worker", 0)
+		worker := server.NewWorker("test_worker", 0, []string{})
 
 		errorsChan := make(chan error, 1)
 
@@ -78,7 +78,7 @@ func TestRedisRedisWorkerQuickQuit(t *testing.T) {
 	}
 
 	server, _ := machinery.NewServer(cnf)
-	worker := server.NewWorker("test_worker", 0)
+	worker := server.NewWorker("test_worker", 0, []string{})
 
 	errorsChan := make(chan error, 1)
 

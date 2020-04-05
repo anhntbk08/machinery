@@ -91,7 +91,7 @@ func TestPrivateFunc_consume(t *testing.T) {
 		t.Fatal(err)
 	}
 	pool := make(chan struct{}, 0)
-	wk := server1.NewWorker("sms_worker", 0)
+	wk := server1.NewWorker("sms_worker", 0, []string{})
 	deliveries := make(chan *awssqs.ReceiveMessageOutput)
 	outputCopy := *receiveMessageOutput
 	outputCopy.Messages = []*awssqs.Message{}
@@ -108,7 +108,7 @@ func TestPrivateFunc_consumeOne(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	wk := server1.NewWorker("sms_worker", 0)
+	wk := server1.NewWorker("sms_worker", 0, []string{})
 	err = testAWSSQSBroker.ConsumeOneForTest(receiveMessageOutput, wk)
 	assert.NotNil(t, err)
 
@@ -139,7 +139,7 @@ func TestPrivateFunc_startConsuming(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	wk := server1.NewWorker("sms_worker", 0)
+	wk := server1.NewWorker("sms_worker", 0, []string{})
 	retryFunc := testAWSSQSBroker.GetRetryFuncForTest()
 	stopChan := testAWSSQSBroker.GetStopChanForTest()
 	retryStopChan := testAWSSQSBroker.GetRetryStopChanForTest()
@@ -178,7 +178,7 @@ func TestPrivateFunc_consumeDeliveries(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	wk := server1.NewWorker("sms_worker", 0)
+	wk := server1.NewWorker("sms_worker", 0, []string{})
 	go func() { deliveries <- receiveMessageOutput }()
 	whetherContinue, err := testAWSSQSBroker.ConsumeDeliveriesForTest(deliveries, concurrency, wk, pool, errorsChan)
 	assert.True(t, whetherContinue)
@@ -239,7 +239,7 @@ func Test_CustomQueueName(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	wk := server1.NewWorker("test-worker", 0)
+	wk := server1.NewWorker("test-worker", 0, []string{})
 	qURL := testAWSSQSBroker.GetQueueURLForTest(wk)
 	assert.Equal(t, qURL, testAWSSQSBroker.DefaultQueueURLForTest(), "")
 
@@ -274,7 +274,7 @@ func TestPrivateFunc_consumeWithConcurrency(t *testing.T) {
 	assert.NoError(t, err)
 	pool := make(chan struct{}, 1)
 	pool <- struct{}{}
-	wk := server1.NewWorker("sms_worker", 1)
+	wk := server1.NewWorker("sms_worker", 1, []string{})
 	deliveries := make(chan *awssqs.ReceiveMessageOutput)
 	outputCopy := *receiveMessageOutput
 	outputCopy.Messages = []*awssqs.Message{

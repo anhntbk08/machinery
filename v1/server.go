@@ -54,19 +54,20 @@ func NewServer(cnf *config.Config) (*Server, error) {
 	eager, ok := broker.(eager.Mode)
 	if ok {
 		// we don't have to call worker.Launch in eager mode
-		eager.AssignWorker(srv.NewWorker("eager", 0))
+		eager.AssignWorker(srv.NewWorker("eager", 0, []string{}))
 	}
 
 	return srv, nil
 }
 
 // NewWorker creates Worker instance
-func (server *Server) NewWorker(consumerTag string, concurrency int) *Worker {
+func (server *Server) NewWorker(consumerTag string, concurrency int, limitTasks []string) *Worker {
 	return &Worker{
 		server:      server,
 		ConsumerTag: consumerTag,
 		Concurrency: concurrency,
 		Queue:       "",
+		limitTasks:  limitTasks,
 	}
 }
 

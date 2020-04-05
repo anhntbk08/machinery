@@ -374,7 +374,11 @@ if err != nil {
 In order to consume tasks, you need to have one or more workers running. All you need to run a worker is a `Server` instance with registered tasks. E.g.:
 
 ```go
-worker := server.NewWorker("worker_name", 10)
+worker := server.NewWorker("worker_name", 10, nil) // process all kind of tasks
+// or specify which task to process, normally you want to 
+// process one by one for this kind of worker
+worker := server.NewWorker("worker_name", 10, []string{"task_A", "task_b"})
+
 err := worker.Launch()
 if err != nil {
   // do something with the error

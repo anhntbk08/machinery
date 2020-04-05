@@ -59,7 +59,7 @@ func TestNewWorker(t *testing.T) {
 
 	server := getTestServer(t)
 
-	server.NewWorker("test_worker", 1)
+	server.NewWorker("test_worker", 1, []string{})
 	assert.NoError(t, nil)
 }
 

@@ -25,7 +25,7 @@ func TestSQSMongodb(t *testing.T) {
 		ResultsExpireIn: 30,
 		ResultBackend:   fmt.Sprintf("mongodb://%v", mongodbURL),
 	})
-	worker := server.NewWorker("test_worker", 0)
+	worker := server.NewWorker("test_worker", 0, []string{})
 	go worker.Launch()
 	testAll(server, t)
 	worker.Quit()
