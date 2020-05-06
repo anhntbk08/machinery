@@ -258,6 +258,7 @@ func (b *Backend) getStates(taskUUIDs ...string) ([]*tasks.TaskState, error) {
 
 // updateState saves current task state
 func (b *Backend) updateState(signature *tasks.Signature, update bson.M) error {
+	update["SIGNATURE"] = signature
 	update = bson.M{"$set": update}
 	_, err := b.tasksCollection().UpdateOne(context.Background(), bson.M{"_id": signature.UUID}, update, options.Update().SetUpsert(true))
 	return err
