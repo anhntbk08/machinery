@@ -9,6 +9,8 @@ func Fibonacci() func() int {
 	}
 }
 
+var MAXIMUM_INTERVAL_TIME = 300
+
 // FibonacciNext returns next number in Fibonacci sequence greater than start
 func FibonacciNext(start int) int {
 	fib := Fibonacci()
@@ -16,5 +18,10 @@ func FibonacciNext(start int) int {
 	for num <= start {
 		num = fib()
 	}
+
+	if num > MAXIMUM_INTERVAL_TIME {
+		return MAXIMUM_INTERVAL_TIME
+	}
+
 	return num
 }
