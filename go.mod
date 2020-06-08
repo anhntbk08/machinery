@@ -3,7 +3,7 @@ module github.com/anhntbk08/machinery
 require (
 	cloud.google.com/go/pubsub v1.0.1
 	github.com/RichardKnop/logging v0.0.0-20190827224416-1a693bdd4fae
-	github.com/RichardKnop/machinery v1.7.3
+	github.com/RichardKnop/machinery v1.7.3 // indirect
 	github.com/RichardKnop/redsync v1.2.0
 	github.com/aws/aws-sdk-go v1.25.8
 	github.com/bradfitz/gomemcache v0.0.0-20190913173617-a41fca850d0b
@@ -12,7 +12,7 @@ require (
 	github.com/google/uuid v1.1.1
 	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/opentracing/opentracing-go v1.1.0
-	github.com/pkg/errors v0.8.1
+	github.com/pkg/errors v0.9.1
 	github.com/streadway/amqp v0.0.0-20190827072141-edfb9018d271
 	github.com/stretchr/testify v1.3.0
 	github.com/urfave/cli v1.22.1

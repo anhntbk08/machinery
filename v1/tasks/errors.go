@@ -30,3 +30,17 @@ func NewErrRetryTaskLater(msg string, retryIn time.Duration) ErrRetryTaskLater {
 type Retriable interface {
 	RetryIn() time.Duration
 }
+
+// ErrShouldStopProcessing ...
+type ErrShouldStopProcessing struct {
+	name, msg string
+}
+
+// Error implements the error interface
+func (e ErrShouldStopProcessing) Error() string {
+	return fmt.Sprintf("Task error: %s Will be stopped in: %s", e.msg)
+}
+
+func NewErrShouldStopProcessing(msg string) ErrShouldStopProcessing {
+	return ErrShouldStopProcessing{msg: msg}
+}

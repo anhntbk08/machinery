@@ -183,6 +183,11 @@ func (worker *Worker) Process(signature *tasks.Signature) error {
 			return worker.retryTaskIn(signature, retriableErr.RetryIn())
 		}
 
+		_, ok = interface{}(err).(tasks.ErrShouldStopProcessing)
+		if ok {
+			return worker.taskFailed(signature, err)
+		}
+
 		// Otherwise, execute default retry logic based on signature.RetryCount
 		// and signature.RetryTimeout values
 		if signature.RetryCount > 0 {
